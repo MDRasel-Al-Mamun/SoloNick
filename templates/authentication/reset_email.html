@@ -1,0 +1,20 @@
+{% load i18n %}
+{% autoescape off %}
+
+{% blocktranslate %}
+You're receiving this email because you requested a password reset for your user account at {{ domain }}.
+{% endblocktranslate %}
+
+{% translate "Please click this link below to verify your account:" %}
+
+{% block reset_link %}
+http://{{domain}}{% url 'reset_user_password' uidb64=uid token=token %}
+{% endblock %}
+
+{% translate 'Read the whole report below to understand how Macquarie Bank was able to deliver high-value apps and digital capabilities by embracing microservices, cloud, and container technologies.' %}
+
+{% translate "Thanks to join with us again." %}
+
+{% blocktranslate %}© {{ domain }} 2020 / ALL RIGHTS RESERVED.{% endblocktranslate %}
+
+{% endautoescape %}

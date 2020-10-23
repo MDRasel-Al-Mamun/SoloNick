@@ -1,0 +1,88 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block keywords %} {% endblock %}
+
+{% block description %} {% endblock %}
+
+{% block title %} Portfolio {% endblock %}
+
+{% block extrahead %} {% endblock %}
+
+{% block extrastyle %} {% endblock %}
+
+{% block header %} {% include 'partials/_header.html' %} {% endblock %}
+
+{% block wrapper %} {% endblock %}
+
+{% block content %}
+
+<div class="single-page-decor"></div>
+
+<div class="fsp-filter">
+ <div class="filter-title"><i class="fal fa-filter"></i><span>Portfolio Filter</span></div>
+ <div class="gallery-filters">
+  <a href="#" class="gallery-filter  gallery-filter-active" data-filter="*">{{ category.name }}</a>
+ </div>
+ <div class="folio-counter">
+  <div class="num-album"></div>
+  <div class="all-album"></div>
+ </div>
+</div>
+
+<section class="no-padding dark-bg">
+
+ <div class="gallery-items min-pad hde three-column">
+
+  {% if projects %}
+
+  {% for project in projects %}
+  <div class="gallery-item">
+   <div class="grid-item-holder">
+    {% if project.video %}
+    <a href="{{ project.video.url }}" class="fet_pr-carousel-box-media-zoom image-popup">
+     <i class="fal fa-play"></i>
+    </a>
+    {% else %}
+    <a href="{{ project.imageURL }}" class="fet_pr-carousel-box-media-zoom image-popup">
+     <i class="fal fa-search"></i>
+    </a>
+    {% endif %}
+    <img src="{{ project.imageURL }}" alt="">
+    <div class="box-item hd-box">
+     <div class=" fl-wrap full-height">
+      <div class="hd-box-wrap">
+       <h2><a href="{{ project.get_absolute_url }}">{{ project.title }}</a></h2>
+       <p><a href="{{ project.category.get_absolute_url }}">{{ project.category.name }}</a></p>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+  {% endfor %}
+
+  {% else %}
+
+  {% endif %}
+
+ </div>
+</section>
+
+<section class="dark-bg2 small-padding order-wrap">
+ <div class="container">
+  <div class="row">
+   <div class="col-md-8">
+    <h3>Ready To order Your Project ?</h3>
+   </div>
+   <div class="col-md-4"><a href="contscts.html" class="btn flat-btn color-btn">Get In Touch</a>
+   </div>
+  </div>
+ </div>
+</section>
+
+{% endblock %}
+
+{% block footer %} {% include 'partials/_footer.html' %} {% endblock %}
+
+{% block extrascripts %} {% endblock %}

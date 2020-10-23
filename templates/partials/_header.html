@@ -1,0 +1,68 @@
+{% load static %}
+
+<header class="main-header">
+ <a class="logo-holder" href="{% url 'home' %}">
+  <img src="{% static 'images/logo.png' %}" alt="">
+ </a>
+ <div class="nav-button but-hol">
+  <span class="nos"></span>
+  <span class="ncs"></span>
+  <span class="nbs"></span>
+  <div class="menu-button-text">Menu</div>
+ </div>
+ <div class="header-social">
+  <ul>
+   <li><a href="#" target="_blank">
+     <i class="fab fa-facebook-f"></i></a>
+   </li>
+   <li><a href="#" target="_blank">
+     <i class="fab fa-instagram"></i></a>
+   </li>
+   <li><a href="#" target="_blank">
+     <i class="fab fa-twitter"></i></a>
+   </li>
+   <li><a href="#" target="_blank">
+     <i class="fab fa-vk"></i></a>
+   </li>
+  </ul>
+ </div>
+ <div class="show-share showshare">
+  <i class="fal fa-retweet"></i>
+  <span>Share This</span>
+ </div>
+</header>
+
+<div class="nav-overlay">
+ <div class="tooltip color-bg">Close Menu</div>
+</div>
+
+<div class="nav-holder">
+ <a class="header-logo" href="index.html">
+  <img src="{% static 'images/logo2.png' %}" alt="">
+ </a>
+ <div class="nav-title"><span>Menu</span></div>
+ <div class="nav-inner-wrap">
+  <nav class="nav-inner sound-nav" id="menu">
+   <ul>
+    <li><a href="{% url 'home' %}" class="act-link">Home</a></li>
+    <li><a href="{% url 'portfolio' %}">Portfolio</a></li>
+    <li><a href="{% url 'services' %}">Services</a></li>
+    <li><a href="{% url 'blog' %}">Blog</a></li>
+    <li><a href="{% url 'contacts' %}">Contacts</a></li>
+    {% if request.user.is_authenticated %}
+    <li>
+     <a href="#" class="">Profile</a>
+     <ul>
+      <li><a href="{% url 'profile' %}">Edit Profile</a></li>
+      <li><a href="index2.html">Favourit Post</a></li>
+      <li><a href="index2.html">Hire Me</a></li>
+      <li><a href="{% url 'signout' %}">Sign Out</a></li>
+     </ul>
+    </li>
+    {% else %}
+    <li><a href="{% url 'signin' %}">Sign In</a></li>
+    {% endif %}
+   </ul>
+  </nav>
+ </div>
+</div>

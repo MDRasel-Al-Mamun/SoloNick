@@ -1,0 +1,157 @@
+{% load static %}
+
+<section data-scrollax-parent="true" id="sec3">
+  <div class="section-subtitle" data-scrollax="properties: { translateY: '-250px' }">
+    My Resume <span>//</span>
+  </div>
+  <div class="container">
+    <div class="section-title fl-wrap">
+      <h3>Some Words About Me</h3>
+      <h2>My Awesome <span> Story</span></h2>
+      <p>
+        We started as a small, subdue, called hath give fourth. Them one over saying. So the god, greater. You. Us air
+        Moved divide midst us fifth sea .
+      </p>
+    </div>
+
+    <div class="custom-inner-holder  mar-bottom">
+
+
+      {% if resumes %}
+
+      {% for resume in resumes %}
+      <div class="custom-inner">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="custom-inner-header {{ resume.label }}">
+              <i class="fa fa-{{ resume.icon }}"></i>
+              <h3>{{ resume.title }}</h3>
+              <span> {{ resume.year }} </span>
+            </div>
+            <div class="ci-num"><span>0{{ resume.id }}. -</span></div>
+          </div>
+          <div class="col-md-8">
+            <div class="custom-inner-content fl-wrap">
+              <h4>{{ resume.institute }}</h4>
+              {{ resume.discription|safe }}
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+      {% endif %}
+
+    </div>
+    <a href="{{ profile.cv.url }}" class="btn float-btn flat-btn color-btn mar-top">Download Resume</a>
+  </div>
+  <div class="sec-lines"></div>
+</section>
+
+
+<!-- section  -->
+<section class="dark-bg sinsec-dec sinsec-dec2">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="video-box fl-wrap">
+          <img src="{{ presentation.imageURL }}" class="respimg" alt="">
+          <a class="video-box-btn color-bg image-popup" href="{{ presentation.video_url }}"><i class="fal fa-play"
+              aria-hidden="true"></i></a>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="video-promo-text fl-wrap mar-top">
+          <h3>{{ presentation.title }}</h3>
+          <p>{{ presentation.detail|safe }}</p>
+          <a href="#" class="btn float-btn flat-btn color-btn mar-top">My Youtube Chanel</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="half-bg-dec single-half-bg-dec" data-ran="12"></div>
+  <div class="sec-lines"></div>
+</section>
+
+
+<section data-scrollax-parent="true">
+  <div class="section-subtitle" data-scrollax="properties: { translateY: '-250px' }"><span>//</span>How I Work</div>
+  <div class="container">
+    <div class="section-title fl-wrap">
+      <h3>How i Work</h3>
+      <h2>My Working <span>Process</span></h2>
+      <p>In ut odio libero, at vulputate urna. Nulla tristique mi a massa convallis cursus. Nulla eu mi magna. Etiam
+        suscipit commodo gravida. </p>
+    </div>
+
+    <div class="process-wrap fl-wrap">
+      <ul>
+        <li>
+          <div class="time-line-icon">
+            <i class="fab fa-slideshare"></i>
+          </div>
+          <h4>Discuss the project</h4>
+          <div class="process-details">
+            <h6>Duis autem vel eum iriure dolor</h6>
+            <p>Exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum
+              iriure dolor.</p>
+            <a href="#">More Details</a>
+          </div>
+          <span class="process-numder">01.</span>
+        </li>
+        <li>
+          <div class="time-line-icon">
+            <i class="fal fa-laptop"></i>
+          </div>
+          <h4>Develop & elaborate</h4>
+          <div class="process-details">
+            <h6>In ut odio libero, at vulputate urna. </h6>
+            <p>Exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum
+              iriure dolor.</p>
+            <a href="#">More Details</a>
+          </div>
+          <span class="process-numder">02.</span>
+        </li>
+        <li>
+          <div class="time-line-icon">
+            <i class="fal fa-flag-checkered"></i>
+          </div>
+          <h4>Final approvement</h4>
+          <div class="process-details">
+            <h6>Nulla posuere sapien vitae lectus suscipit</h6>
+            <p>Exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum
+              iriure dolor.</p>
+            <a href="#">More Details</a>
+          </div>
+          <span class="process-numder">03.</span>
+        </li>
+      </ul>
+    </div>
+    <div class="fl-wrap mar-top">
+      <div class="srv-link-text">
+        <h4>Need more info ? Visit my services page : </h4>
+        <a href="services.html" class="btn float-btn flat-btn color-btn">My Services</a>
+      </div>
+    </div>
+  </div>
+  <div class="bg-parallax-module" data-position-top="90" data-position-left="30"
+    data-scrollax="properties: { translateY: '-150px' }"></div>
+  <div class="bg-parallax-module" data-position-top="80" data-position-left="80"
+    data-scrollax="properties: { translateY: '350px' }"></div>
+  <div class="sec-lines"></div>
+</section>
+
+<section class="parallax-section dark-bg sec-half parallax-sec-half-left" data-scrollax-parent="true" id="sec4">
+  <div class="bg par-elem" data-bg="{% static 'images/bg/3.jpg' %}" data-scrollax="properties: { translateY: '30%' }">
+  </div>
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="section-title">
+      <h2>My Own <span> Developer's </span> and <br> Design Skills </h2>
+      <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis
+        pulvinar. Donec a consectetur nulla. Nulla posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt.
+        Aliquam erat volutpat. </p>
+      <div class="horizonral-subtitle"><span>Power</span></div>
+    </div>
+  </div>
+</section>

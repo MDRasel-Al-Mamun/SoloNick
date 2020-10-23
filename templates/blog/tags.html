@@ -1,0 +1,145 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block keywords %} {% endblock %}
+
+{% block description %} {% endblock %}
+
+{% block title %} Blog Posts {% endblock %}
+
+{% block extrahead %} {% endblock %}
+
+{% block extrastyle %} {% endblock %}
+
+{% block header %} {% include 'partials/_header.html' %} {% endblock %}
+
+{% block wrapper %} {% endblock %}
+
+{% block content %}
+
+{% include 'blog/navbar.html' %}
+
+<section data-scrollax-parent="true" id="sec1">
+ <div class="section-subtitle left-pos" data-scrollax="properties: { translateY: '-250px' }">
+  <span>//</span>Journal</div>
+ <div class="container">
+
+  <div class="fl-wrap post-container">
+   <div class="row">
+
+    <div class="col-md-8">
+
+     {% if page %}
+
+     {% for post in page.object_list  %}
+     <div class="post fl-wrap fw-post">
+      <h2><a href="{{ post.get_absolute_url }}"><span>{{ post.title }}</span></a></h2>
+      <div class="parallax-header">
+       <a href="#">{{ post.datepublished }}</a>
+       <span>Category :</span>
+       <a href="{{ post.category.get_absolute_url }}">{{ post.category.name }}</a>
+      </div>
+
+      <div class="blog-media fl-wrap">
+       <img src="{{ post.imageURL }}" alt="">
+      </div>
+
+      <div class="parallax-header fl-wrap">
+       <span>Tags : </span>
+
+       {% for tag in post.tags.all %}
+       <a href="#">{{ tag }}</a>
+       {% endfor %}
+      </div>
+      <div class="blog-text fl-wrap">
+       <div class="clearfix"></div>
+       <h3>
+        <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+       </h3>
+       <p>
+        {{ post.overview }}
+       </p>
+       <a href="{{ post.get_absolute_url }}" class="btn float-btn color-btn flat-btn">
+        Read more
+       </a>
+       <ul class="post-counter">
+        <li><i class="fa fa-eye"></i><span>{{ post.read }}</span></li>
+        <li><i class="fal fa-comments-alt"></i><span>10</span></li>
+       </ul>
+      </div>
+     </div>
+     {% endfor %}
+
+     {% else %}
+     <div class="post fl-wrap fw-post">
+      <h2>There are No Posts</h2>
+     </div>
+     {% endif %}
+
+
+    </div>
+
+    {% include 'blog/sidebar.html' %}
+   </div>
+
+   <div class="content-nav">
+    <ul>
+     <li>
+      {% if prev_page_url %}
+      <a href="{{ prev_page_url }}" class="ln">
+       <i class="fal fa-arrow-left"></i>
+       <span class="tooltip">
+        Prev - page {{ page.previous_page_number }}
+       </span>
+      </a>
+      {% endif %}
+     </li>
+     <li>
+      <span class="cur-page"><span>Page {{ page.number }}</span></span>
+     </li>
+     <li>
+      {% if next_page_url %}
+      <a href="{{ next_page_url }}" class="rn">
+       <i class="fal fa-arrow-right"></i>
+       <span class="tooltip">
+        Next - page{{ page.next_page_number }}
+       </span>
+      </a>
+      {% endif %}
+     </li>
+    </ul>
+   </div>
+
+  </div>
+
+ </div>
+ <div class="bg-parallax-module" data-position-top="50" data-position-left="20"
+  data-scrollax="properties: { translateY: '-250px' }"></div>
+ <div class="bg-parallax-module" data-position-top="40" data-position-left="70"
+  data-scrollax="properties: { translateY: '150px' }"></div>
+ <div class="bg-parallax-module" data-position-top="80" data-position-left="80"
+  data-scrollax="properties: { translateY: '350px' }"></div>
+ <div class="bg-parallax-module" data-position-top="95" data-position-left="40"
+  data-scrollax="properties: { translateY: '-550px' }"></div>
+ <div class="sec-lines"></div>
+</section>
+
+<section class="dark-bg2 small-padding order-wrap">
+ <div class="container">
+  <div class="row">
+   <div class="col-md-8">
+    <h3>Ready To order Your Project ?</h3>
+   </div>
+   <div class="col-md-4"><a href="contscts.html" class="btn flat-btn color-btn">Get In
+     Touch</a> </div>
+  </div>
+ </div>
+</section>
+
+
+{% endblock %}
+
+{% block footer %} {% include 'partials/_footer.html' %} {% endblock %}
+
+{% block extrascripts %} {% endblock %}

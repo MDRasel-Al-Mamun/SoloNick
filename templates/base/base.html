@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% load static %}
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="keywords" content="{% block keywords %} {% endblock %}" />
+  <meta name="description" content="{% block description %} {% endblock %}" />
+  <title>SoloNick | {% block title %} {% endblock %}</title>
+
+  {% include 'base/css.html' %}
+
+  {% block extrahead %} {% endblock %}
+
+  {% block extrastyle %} {% endblock %}
+</head>
+
+<body>
+  <div class="loader-wrap">
+    <div class="pin"></div>
+  </div>
+  <div id="main">
+    {% block header %} {% endblock %}
+
+    <div id="wrapper" {% if not page %} class="single-page-wrap" {% endif %}>
+
+      {% block wrapper %} {% endblock %}
+
+      <div class="content">
+        {% block content %}
+
+
+        {% endblock %}
+      </div>
+      {% block footer %} {% endblock %}
+    </div>
+  </div>
+
+  {% include 'base/scripts.html' %}
+
+  {% block extrascripts %} {% endblock %}
+</body>
+
+</html>

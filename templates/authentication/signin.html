@@ -1,0 +1,109 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block keywords %} {% endblock %}
+
+{% block description %} {% endblock %}
+
+{% block title %} Sign In {% endblock %}
+
+{% block extrahead %} {% endblock %}
+
+{% block extrastyle %} {% endblock %}
+
+{% block header %} {% include 'partials/_header.html' %} {% endblock %}
+
+{% block wrapper %} {% endblock %}
+
+{% block content %}
+
+<div class="single-page-decor"></div>
+<div class="single-page-fixed-row">
+ <div class="scroll-down-wrap">
+  <div class="mousey">
+   <div class="scroller"></div>
+  </div>
+  <span>Scroll Down</span>
+ </div>
+ <a href="{% url 'home' %}" class="single-page-fixed-row-link">
+   <i class="fal fa-arrow-left"></i> <span>Back to home</span>
+  </a>
+</div>
+
+<section data-scrollax-parent="true" id="sec1">
+ <div class="section-subtitle" data-scrollax="properties: { translateY: '-250px' }">
+   Sign In<span>//</span>
+ </div>
+ <div class="container">
+  <div class="fl-wrap">
+   <div class="row">
+    <div class="col-md-3">
+     <div class="pr-title fl-wrap">
+      <h3>Sign In</h3>
+      <span>Lorem Ipsum generators on the Internet king this the first true generator</span>
+     </div>
+    </div>
+    <div class="col-md-7">
+     <div id="contact-form">
+      <div id="message">{% include 'partials/_messages.html' %}</div>
+      <form class="custom-form" action="{% url 'signin' %}" id="validationForm" method="POST">
+        {% csrf_token %}
+       <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 validationform">
+          <label><i class="fal fa-user-shield"></i></label>
+          <input type="text" name="username" placeholder="Username *" />
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 validationform">
+          <label><i class="fal fa-key"></i></label>
+          <input type="password" name="password" placeholder="Password *" />
+        </div>
+       </div>
+       <div class="clearfix"></div>
+       <button class="btn float-btn flat-btn color-btn pull-left" type="submit" id="submit">Sign In</button>
+       <div class="pull-right verify-text">
+         <a href="{% url 'reset_password' %}">Forgot password?</a>
+       </div>
+      </form>
+      <div class="verify-text"> Not a member?
+        <a href="{% url 'signup' %}">Sign Up</a>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+ <div class="bg-parallax-module" data-position-top="70" data-position-left="20"
+  data-scrollax="properties: { translateY: '-250px' }"></div>
+ <div class="bg-parallax-module" data-position-top="40" data-position-left="70"
+  data-scrollax="properties: { translateY: '150px' }"></div>
+ <div class="bg-parallax-module" data-position-top="80" data-position-left="80"
+  data-scrollax="properties: { translateY: '350px' }"></div>
+ <div class="bg-parallax-module" data-position-top="95" data-position-left="40"
+  data-scrollax="properties: { translateY: '-550px' }"></div>
+ <div class="sec-lines"></div>
+</section>
+
+<section class="dark-bg2 small-padding order-wrap">
+ <div class="container">
+  <div class="row">
+   <div class="col-md-8">
+    <h3>Find me on social networks : </h3>
+   </div>
+   <div class="col-md-4">
+    <ul>
+     <li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+     <li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
+     <li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
+     <li><a href="#" target="_blank"><i class="fab fa-vk"></i></a></li>
+    </ul>
+   </div>
+  </div>
+ </div>
+</section>
+
+{% endblock %}
+
+{% block footer %} {% include 'partials/_footer.html' %} {% endblock %}
+
+{% block extrascripts %} {% endblock %}

@@ -1,0 +1,212 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block keywords %} {% endblock %}
+
+{% block description %} {% endblock %}
+
+{% block title %} Portfolio | {{ project.title }} {% endblock %}
+
+{% block extrahead %} {% endblock %}
+
+{% block extrastyle %} {% endblock %}
+
+{% block header %} {% include 'partials/_header.html' %} {% endblock %}
+
+{% block wrapper %} {% endblock %}
+
+{% block content %}
+
+<div class="single-page-decor"></div>
+<div class="single-page-fixed-row">
+  <div class="scroll-down-wrap">
+    <div class="mousey">
+      <div class="scroller"></div>
+    </div>
+    <span>Scroll Down</span>
+  </div>
+  <a href="{% url 'home' %}" class="single-page-fixed-row-link">
+    <i class="fal fa-arrow-left"></i><span>Back to home</span>
+  </a>
+</div>
+
+<section class="parallax-section dark-bg sec-half parallax-sec-half-right" data-scrollax-parent="true">
+  <div class="bg par-elem" data-bg="{% static 'images/bg/27.jpg' %}" data-scrollax="properties: { translateY: '30%' }">
+  </div>
+  <div class="overlay"></div>
+  <div class="pattern-bg"></div>
+  <div class="container">
+    <div class="section-title">
+      <h2><span>{{ project.title }}</span></h2>
+      <p> If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything
+        embarrassing hidden in the middle of text. </p>
+      <div class="horizonral-subtitle"><span>PROJECTS</span></div>
+    </div>
+    <a href="#sec1" class="custom-scroll-link hero-start-link">Let's Start <i class="fal fa-long-arrow-down"></i></a>
+  </div>
+</section>
+
+<section id="sec1" class="no-padding">
+  <div class="container mar-top">
+
+    <div class="fl-wrap  mar-top">
+
+      <div class="gallery-items min-pad  lightgallery three-column">
+
+        {% if images %}
+
+        {% for picture in images %}
+        <div class="gallery-item">
+          <div class="grid-item-holder">
+            <a href="{{ picture.imageURL }}" class="fet_pr-carousel-box-media-zoom popup-image">
+              <i class="fal fa-search"></i>
+            </a>
+            <img src="{{ picture.imageURL }}" alt="">
+          </div>
+        </div>
+        {% endfor %}
+
+        {% endif %}
+
+        {% if project.video %}
+        <div class="gallery-item web">
+          <div class="grid-item-holder">
+            <a href="{{ project.video.url }}" class="fet_pr-carousel-box-media-zoom popup-image">
+              <i class="fal fa-play"></i>
+            </a>
+            <img src="{{ project.imageURL }}" alt="">
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section data-scrollax-parent="true">
+  <div class="section-subtitle right-pos" data-scrollax="properties: { translateY: '-250px' }">
+    <span>//</span>{{ project.title }}</div>
+  <div class="container">
+    <div class="fl-wrap">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="fixed-column l-wrap">
+            <div class="pr-title fl-wrap">
+              <h3>Project Details</h3>
+              <span>Lorem Ipsum generators on the Internet king this the first true generator</span>
+            </div>
+            <div class="ci-num">
+              <span>{{ project.id }}.</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div class="details-wrap fl-wrap">
+            <h3><span>{{ project.title }}</span></h3>
+            <div class="parallax-header">
+              <span>Category : </span>
+              <a href="{{ project.category.get_absolute_url }}">{{ project.category.name }}</a>
+            </div>
+            <div class="clearfix"></div>
+            {{ project.content|safe }}
+          </div>
+          <div class="pr-list fl-wrap">
+            <div class="row">
+              <div class="col-md-4">
+                <ul>
+                  <li><span>Date :</span> {{ project.publish_date|date:"F d, Y" }} </li>
+                  <li><span>Client :</span> {{ project.client }} </li>
+                  <li><span>Skills :</span> {{ project.topic }} </li>
+                  <li><span>Location : </span>
+                    <a href="{{ project.locatiion_map }}" target="_blank">{{ project.locatiion }}</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-md-8">
+                <div class="fl-wrap pr-list-det">
+                  <div class="popup-avatar"><img src="{% static 'images/avatar/2.jpg' %}" alt=""></div>
+                  <h5>Client Review.</h5>
+                  <p>" Curabitur convallis fringilla diam sed aliquam. Sed tempor iaculis massa
+                    faucibus feugiat. In fermentum facilisis massa, a consequat purus viverra. "</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="accordion mar-top">
+
+            {% if details %}
+
+            {% for overview in details %}
+            <a class="toggle act-accordion" href="#"> {{ overview.title }} <span></span></a>
+            <div class="accordion-inner {% if forloop.counter0 == 0 %} visible {% endif %}">
+              <p>{{ overview.detail }}</p>
+            </div>
+            {% endfor %}
+
+            {% endif %}
+
+          </div>
+
+          <a href="portfolio-single.html" class="btn float-btn flat-btn color-btn mar-top">View
+            project</a>
+        </div>
+      </div>
+      <div class="limit-box fl-wrap"></div>
+    </div>
+
+    <div class="content-nav mar-top">
+      <ul>
+        <li>
+          {% if project.get_previous_by_publish_date %}
+          <a href="{% url 'portfolio_details' project.get_previous_by_publish_date.id project.get_previous_by_publish_date.slug %}"
+            class="ln">
+            <i class="fal fa-arrow-left"></i>
+            <span class="tooltip">Prev - {{ project.get_previous_by_publish_date.title }}</span>
+          </a>
+          {% endif %}
+        </li>
+        <li>
+          <a href="{% url 'portfolio' %}" class="cur-page"><span>All Projects</span></a>
+        </li>
+        <li>
+          {% if project.get_next_by_publish_date %}
+          <a href="{% url 'portfolio_details' project.get_next_by_publish_date.id project.get_next_by_publish_date.slug %}" class="rn">
+            <i class="fal fa-arrow-right"></i>
+            <span class="tooltip">Next - {{ project.get_next_by_publish_date.title }} </span>
+          </a>
+          {% endif %}
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="bg-parallax-module" data-position-top="50" data-position-left="20"
+    data-scrollax="properties: { translateY: '-250px' }"></div>
+  <div class="bg-parallax-module" data-position-top="40" data-position-left="70"
+    data-scrollax="properties: { translateY: '150px' }"></div>
+  <div class="bg-parallax-module" data-position-top="80" data-position-left="80"
+    data-scrollax="properties: { translateY: '350px' }"></div>
+  <div class="bg-parallax-module" data-position-top="95" data-position-left="40"
+    data-scrollax="properties: { translateY: '-550px' }"></div>
+  <div class="sec-lines"></div>
+</section>
+
+
+<section class="dark-bg2 small-padding order-wrap">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <h3>Ready To order Your Project ?</h3>
+      </div>
+      <div class="col-md-4"><a href="contscts.html" class="btn flat-btn color-btn">Get In Touch</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{% endblock %}
+
+{% block footer %} {% include 'partials/_footer.html' %} {% endblock %}
+
+{% block extrascripts %} {% endblock %}

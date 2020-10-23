@@ -1,0 +1,140 @@
+{% extends 'base/base.html' %}
+
+{% load static %}
+
+{% block keywords %} {% endblock %}
+
+{% block description %} {% endblock %}
+
+{% block title %} Blog | {{ post.title }} {% endblock %}
+
+{% block extrahead %} {% endblock %}
+
+{% block extrastyle %} {% endblock %}
+
+{% block header %} {% include 'partials/_header.html' %} {% endblock %}
+
+{% block wrapper %} {% endblock %}
+
+{% block content %}
+
+{% include 'blog/navbar.html' %}
+
+<section data-scrollax-parent="true" id="sec1">
+  <div class="section-subtitle left-pos" data-scrollax="properties: { translateY: '-250px' }">
+    <span>//</span>{{ post.title }}</div>
+  <div class="container">
+
+    <div class="fl-wrap post-container">
+      <div class="row">
+        <div class="col-md-8">
+
+          <div class="post fl-wrap fw-post">
+            <h2><a href="blog-single.html"><span>{{ post.title }}</span></a></h2>
+            <div class="parallax-header"> <a href="#">{{ post.datepublished }}</a>
+              <span>Category :</span>
+              <a href="{{ post.category.get_absolute_url }}">{{ post.category.name }}</a>
+            </div>
+
+            {% if images %}
+            <div class="blog-media fl-wrap nomar-bottom">
+              <div class="single-slider-wrap slider-carousel-wrap ">
+                <div class="single-slider cur_carousel-slider-container fl-wrap">
+                  {% for picture in images %}
+                  <div class="slick-slide-item">
+                    <img src="{{ picture.imageURL }}" alt="">
+                  </div>
+                  {% endfor %}
+                </div>
+                <div class="sp-cont sp-cont-prev"><i class="fal fa-long-arrow-left"></i></div>
+                <div class="sp-cont sp-cont-next"><i class="fal fa-long-arrow-right"></i></div>
+              </div>
+            </div>
+
+            {% else %}
+            <div class="blog-media fl-wrap">
+              <img src="{{ post.imageURL }}" alt="">
+            </div>
+            {% endif %}
+
+            <div class="parallax-header fl-wrap"><span>Tags : </span>
+              {% for tag in post.tags.all %}
+              <a href="#">{{ tag }}</a>
+              {% endfor %}<a href="#">Branding</a>
+            </div>
+            <div class="blog-text fl-wrap">
+              <div class="clearfix"></div>
+                {{ post.content|safe }}
+              <ul class="post-counter single-post-counter">
+                <li><i class="fa fa-eye"></i><span>{{ post.read }}</span></li>
+                <li><i class="fal fa-comments-alt"></i><span>10</span></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="post-author">
+            <div class="author-img">
+              <img alt='' src="{% static 'images/team/8.jpg' %}">
+            </div>
+            <div class="author-content">
+              <h5><a href="#">Martin Solonick</a></h5>
+              <p>At one extremity the rope was unstranded, and the separate spread yarns
+                were all braided and woven round the socket of the harpoon; the pole was
+                then driven hard up into the socket; from the lower end the rope was
+                traced half-way along the pole�s length, and firmly secured so, with
+                intertwistings of twine.</p>
+              <div class="team-single-social fl-wrap">
+                <span>Follow : </span>
+                <ul>
+                  <li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                  <li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                  </li>
+                  <li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                  </li>
+                  <li><a href="#" target="_blank"><i class="fab fa-vk"></i></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+         <div class="main-comment-section">
+           {% include 'blog/comments.html' %}
+         </div>
+        </div>
+
+        {% include 'blog/sidebar.html' %}
+      </div>
+
+
+
+    </div>
+
+  </div>
+  <div class="bg-parallax-module" data-position-top="50" data-position-left="20"
+    data-scrollax="properties: { translateY: '-250px' }"></div>
+  <div class="bg-parallax-module" data-position-top="40" data-position-left="70"
+    data-scrollax="properties: { translateY: '150px' }"></div>
+  <div class="bg-parallax-module" data-position-top="80" data-position-left="80"
+    data-scrollax="properties: { translateY: '350px' }"></div>
+  <div class="bg-parallax-module" data-position-top="95" data-position-left="40"
+    data-scrollax="properties: { translateY: '-550px' }"></div>
+  <div class="sec-lines"></div>
+</section>
+
+<section class="dark-bg2 small-padding order-wrap">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <h3>Ready To order Your Project ?</h3>
+      </div>
+      <div class="col-md-4"><a href="contscts.html" class="btn flat-btn color-btn">Get In
+          Touch</a> </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block footer %} {% include 'partials/_footer.html' %} {% endblock %}
+
+{% block extrascripts %} {% endblock %}

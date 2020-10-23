@@ -1,0 +1,112 @@
+{% load static %}
+
+<section data-scrollax-parent="true" id="sec2">
+ <div class="section-subtitle" data-scrollax="properties: { translateY: '-250px' }">
+  <span>//</span>Words About
+ </div>
+ <div class="container">
+  <div class="row">
+   <div class="col-md-5">
+    <div class="collage-image fl-wrap">
+     <div class="collage-image-title" data-scrollax="properties: { translateY: '150px' }">{{ profile.name }}.</div>
+     <img src="{{ profile.coverImageURL }}" class="respimg" alt="">
+    </div>
+   </div>
+   <div class="col-md-7">
+    <div class="main-about fl-wrap">
+
+     <h5>{{ profile.designation }}</h5>
+     <h2>Innovative solutions<br>to boost <span> your creative </span> projects</h2>
+     <p>{{ profile.about_me|safe }}</p>
+
+     <div class="features-box-container fl-wrap">
+      <div class="row">
+
+       {% if services %}
+
+       {% for service in services %}
+       <div class="features-box col-md-6">
+        <div class="time-line-icon">
+         <i class="fal fa-{{ service.icon }}"></i>
+        </div>
+        <h3>{{ service.title }}</h3>
+        <p>{{ service.details|safe }}</p>
+       </div>
+       {% endfor %}
+
+       {% endif %}
+
+      </div>
+     </div>
+     <a href="{% url 'portfolio' %}" class="btn float-btn flat-btn color-btn">My Portfolio</a>
+    </div>
+   </div>
+  </div>
+ </div>
+ <div class="bg-parallax-module" data-position-top="90" data-position-left="25"
+  data-scrollax="properties: { translateY: '-250px' }"></div>
+ <div class="bg-parallax-module" data-position-top="70" data-position-left="70"
+  data-scrollax="properties: { translateY: '150px' }"></div>
+ <div class="sec-lines"></div>
+</section>
+
+
+<section class="parallax-section dark-bg sec-half parallax-sec-half-right" data-scrollax-parent="true">
+ <div class="bg par-elem" data-bg="{% static 'images/bg/6.jpg' %}" data-scrollax="properties: { translateY: '30%' }">
+ </div>
+ <div class="overlay"></div>
+ <div class="container">
+  <div class="section-title">
+   <h2>Some Interisting <span>Facts </span> <br> About Me</h2>
+   <p>We started as a small, subdue, called hath give fourth. Them one over saying. So the god, greater. You. Us air
+    Moved divide midst us fifth sea . </p>
+   <div class="horizonral-subtitle"><span>Numbers</span></div>
+  </div>
+  <div class="fl-wrap facts-holder">
+
+   <div class="inline-facts-wrap">
+    <div class="inline-facts">
+     <div class="milestone-counter">
+      <div class="stats animaper">
+       <div class="num" data-content="0" data-num="145">0</div>
+      </div>
+     </div>
+     <h6>Finished projects</h6>
+    </div>
+   </div>
+
+   <div class="inline-facts-wrap">
+    <div class="inline-facts">
+     <div class="milestone-counter">
+      <div class="stats animaper">
+       <div class="num" data-content="0" data-num="357">0</div>
+      </div>
+     </div>
+     <h6>Happy customers</h6>
+    </div>
+   </div>
+
+   <div class="inline-facts-wrap">
+    <div class="inline-facts">
+     <div class="milestone-counter">
+      <div class="stats animaper">
+       <div class="num" data-content="0" data-num="825">0</div>
+      </div>
+     </div>
+     <h6>Working hours</h6>
+    </div>
+   </div>
+
+   <div class="inline-facts-wrap">
+    <div class="inline-facts">
+     <div class="milestone-counter">
+      <div class="stats animaper">
+       <div class="num" data-content="0" data-num="1124">0</div>
+      </div>
+     </div>
+     <h6>Coffee Cups</h6>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>

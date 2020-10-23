@@ -1,0 +1,49 @@
+{% load static %}
+
+{% load sidebar %}
+
+<div class="single-page-decor"></div>
+<div class="single-page-fixed-row blog-single-page-fixed-row">
+ <div class="scroll-down-wrap">
+  <div class="mousey">
+   <div class="scroller"></div>
+  </div>
+  <span>Scroll Down</span>
+ </div>
+
+ <div class="blog-filters">
+  <span>Filter by: </span>
+
+  <div class="tag-filter blog-btn-filter">
+   <div class="blog-btn">Tags <i class="fa fa-tags" aria-hidden="true"></i></div>
+   <ul>
+    {% tag_sidebar as common_tags %}
+    {% for common_tag in common_tags %}
+    <li>
+     <a href="{% url 'tagged' common_tag.id common_tag.slug %}">{{ common_tag }}</a>
+    </li>
+    {% endfor %}
+   </ul>
+  </div>
+
+  <div class="category-filter blog-btn-filter">
+   <div class="blog-btn">Categories <i class="fa fa-list-ul" aria-hidden="true"></i></div>
+   <ul>
+    {% category_sidebar as categories %}
+    {% for category in categories %}
+    <li><a href="{{ category.get_absolute_url }}">{{ category.name }}</a></li>
+    {% endfor %}
+   </ul>
+  </div>
+
+  <div class="blog-search">
+   <form class="searh-inner fl-wrap" action="{% url 'search' %}" method="POST">
+    {% csrf_token %}
+    <input id="query" name="query" type="text" class="search" placeholder="Search.." />
+    <button class="search-submit color-bg" type="submit" id="submit_btn"><i class="fa fa-search"></i>
+    </button>
+   </form>
+  </div>
+ </div>
+
+</div>

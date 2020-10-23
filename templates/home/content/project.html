@@ -1,0 +1,52 @@
+{% load static %}
+
+
+<section class="dark-bg" id="sec5">
+  <div class="fet_pr-carousel-title">
+    <div class="fet_pr-carousel-title-item">
+      <h3>My Featured Projects</h3>
+      <p>In ut odio libero, at vulputate urna. Nulla tristique mi a massa convallis cursus. Nulla eu mi magna. Etiam
+        suscipit commodo gravida.</p>
+      <a href="{% url 'portfolio' %}" class="btn float-btn flat-btn color-btn mar-top">My Portfolio</a>
+    </div>
+  </div>
+  <div class="slider-carousel-wrap fl-wrap">
+
+    <div class="fet_pr-carousel cur_carousel-slider-container fl-wrap">
+
+      {% if projects %}
+      {% for project in projects %}
+      <div class="slick-item">
+        <div class="fet_pr-carousel-box">
+          <div class="fet_pr-carousel-box-media fl-wrap">
+            <img src="{{ project.imageURL }}" class="" height="300px" alt="">
+            {% if project.video %}
+            <a href="{{ project.video.url }}" class="fet_pr-carousel-box-media-zoom image-popup">
+              <i class="fal fa-play"></i>
+            </a>
+            {% else %}
+            <a href="{{ project.imageURL }}" class="fet_pr-carousel-box-media-zoom image-popup">
+              <i class="fal fa-search"></i>
+            </a>
+            {% endif %}
+          </div>
+          <div class="fet_pr-carousel-box-text fl-wrap">
+            <h3><a href="{{ project.get_absolute_url }}">{{ project.title }}</a></h3>
+            <div class="fet_pr-carousel-cat">
+              <a href="{{ project.category.get_absolute_url }}">{{ project.category.name }}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+      {% else %}
+
+      {% endif %}
+    </div>
+
+    <div class="sp-cont sp-arr sp-cont-prev"><i class="fal fa-long-arrow-left"></i></div>
+    <div class="sp-cont sp-arr sp-cont-next"><i class="fal fa-long-arrow-right"></i></div>
+  </div>
+  <div class="fet_pr-carousel-counter"></div>
+</section>

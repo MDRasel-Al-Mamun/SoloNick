@@ -1,0 +1,91 @@
+{% load static %}
+<div id="comments" class="single-post-comm">
+ <h6 id="comments-title">
+  Comment{{ comments|pluralize }} <span>( {{ comments.count }} )</span>
+ </h6>
+
+ <div class="commentlist clearafix">
+  {% for comment in comments %}
+  <div class="comment">
+   <div class="comment-body">
+    <div class="comment-author">
+     <img alt='' src="{{ comment.user.userprofile.image.url }}" width="50" height="50">
+    </div>
+    <cite class="fn"><a href="#">{{ comment.full_name }}</a></cite>
+    <div class="comment-meta">
+     <h6>
+      <a>
+       {{ comment.timestamp|date:"F d Y" }} at {{ comment.timestamp|time }}
+      </a> /
+      <a class='reply-btn' style="cursor:pointer">
+       {% if comment.children.count %}{{ comment.children.count }}{% endif %} Reply
+      </a>
+     </h6>
+    </div>
+    <p>{{ comment.content }}</p>
+   </div>
+  </div>
+
+  <div class="replied-comments" style="display: none;">
+   {% for reply in comment.replies.all %}
+   <div class="comment" style="margin-left: 50px;">
+    <div class="comment-body">
+     <div class="comment-author">
+      <img alt='' src="{{ reply.user.userprofile.image.url }}" width="50" height="50">
+     </div>
+     <cite class="fn"><a href="#">{{ reply.full_name }}</a></cite>
+     <div class="comment-meta">
+      <h6>
+       <a href="#">{{ reply.timestamp|date:"F d Y" }} at {{ reply.timestamp|time }}</a>
+      </h6>
+     </div>
+     <p>{{ reply.content }}</p>
+    </div>
+   </div>
+   {% endfor %}
+   <div class="clearafix">
+    <div class="clearfix" style="margin-left: 100px; margin-top: 10px;">
+     <form id="add-comment" class="comment-form" action="{% url 'blog_details' post.id post.slug %}" method="POST">
+      {% csrf_token %}
+      <fieldset>
+       <input type="hidden" name="comment_id" value="{{ comment.id }}">
+       {{ comment_form.content }}
+      </fieldset>
+      {% if request.user.is_authenticated %}
+      <button class="btn flat-btn color-btn" type="submit">Reply</button>
+      {% else %}
+      <button class="btn flat-btn color-btn">
+       <a href="{% url 'signin' %}" style="color: #ffffff;">Reply</a>
+      </button>
+      {% endif %}
+     </form>
+    </div>
+   </div>
+  </div>
+
+  {% endfor %}
+
+ </div>
+ 
+ <div class="clearfix"></div>
+ <div id="respond" class="clearafix">
+  <h6 id="reply-title">Leave A Review</h6>
+  <div class="clearfix">
+   <form id="add-comment" class="add-comment comment-form" action="{% url 'blog_details' post.id post.slug %}"
+    method="POST">
+    {% csrf_token %}
+    <fieldset>
+     {{ comment_form.content }}
+    </fieldset>
+    {% if request.user.is_authenticated %}
+    <button class="btn flat-btn color-btn" type="submit">Submit Comment</button>
+    {% else %}
+    <button class="btn flat-btn color-btn">
+     <a href="{% url 'signin' %}" style="color: #ffffff;">Submit Comment</a>
+    </button>
+    {% endif %}
+   </form>
+  </div>
+ </div>
+
+</div>
