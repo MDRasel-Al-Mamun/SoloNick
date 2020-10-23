@@ -6334,6 +6334,7 @@ section.parallax-section .section-title:before {
 	height: 200px;
 	resize: none;
 	padding: 25px 20px;
+	text-align: left;
 	-webkit-appearance: none;
 }
 

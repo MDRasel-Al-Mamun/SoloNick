@@ -1,0 +1,24 @@
+{% load i18n %}
+{% autoescape off %}
+
+{% blocktranslate %}
+Hi, I am {{ name }}
+{% endblocktranslate %}
+
+{% translate "This is my message:" %}
+
+{{ subject }}
+
+{{ message }}
+
+{% translate 'Sender Details' %}
+
+Name: {{ name }}
+
+Email: {{ email }}
+
+Phone: {{ phone }}
+
+{% blocktranslate %}© {{ domain }} 2020 / ALL RIGHTS RESERVED.{% endblocktranslate %}
+
+{% endautoescape %}

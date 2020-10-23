@@ -909,7 +909,9 @@ $(document).ready(function () {
       first_name: 'required',
       last_name: 'required',
       username: 'required',
+      name: 'required',
       email: 'required',
+      subject: 'required',
       password: {
         required: true,
         minlength: 8,
@@ -923,7 +925,9 @@ $(document).ready(function () {
       first_name: 'Please enter your first name',
       last_name: 'Please enter your last name',
       username: 'Please enter a usernameme',
+      name: 'Please enter your full name',
       email: 'Please enter a valid email address',
+      subject: 'Please enter your subject topic',
       password: {
         required: 'Please provide a password',
         minlength: 'Your password must be at least 8 characters long',
